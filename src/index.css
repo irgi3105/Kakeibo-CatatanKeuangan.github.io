@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: #EFE8DA;
+  color: #2B2622;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(178,58,46,0.22) 0%, transparent 38%),
+    radial-gradient(circle at 85% 20%, rgba(60,90,115,0.24) 0%, transparent 42%),
+    radial-gradient(circle at 20% 85%, rgba(107,122,94,0.24) 0%, transparent 42%),
+    radial-gradient(circle at 90% 88%, rgba(230,168,73,0.22) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(201,191,168,0.3) 0%, transparent 60%),
+    linear-gradient(135deg, #F3ECDD 0%, #EFE8DA 50%, #F0E9DB 100%);
+  background-size: 200% 200%, 200% 200%, 200% 200%, 200% 200%, 100% 100%, 100% 100%;
+  animation: living-gradient 22s ease-in-out infinite;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(43,38,34,0.06) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+@keyframes living-gradient {
+  0% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%, 50% 50%, 0% 0%;
+  }
+  50% {
+    background-position: 30% 40%, 70% 60%, 30% 60%, 70% 40%, 50% 50%, 0% 0%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%, 50% 50%, 0% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
+.tear-line {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #C9BFA8 0,
+    #C9BFA8 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.tear-line-h {
+  background-image: repeating-linear-gradient(
+    to right,
+    #C9BFA8 0,
+    #C9BFA8 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  body::before,
+  body::after {
+    display: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  main {
+    width: 100% !important;
+  }
+  .grid {
+    display: block !important;
+  }
+}
+
+::selection {
+  background: #B23A2E;
+  color: #EFE8DA;
+}
+
+input:focus, select:focus, button:focus-visible {
+  outline: 2px solid #3C5A73;
+  outline-offset: 2px;
+}
+
+@keyframes stamp-in {
+  0% { transform: scale(1.4) rotate(-8deg); opacity: 0; }
+  60% { transform: scale(0.95) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-4deg); opacity: 1; }
+}
+
+.stamp-anim {
+  animation: stamp-in 0.35s ease-out;
+}
